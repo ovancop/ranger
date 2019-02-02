@@ -17,10 +17,14 @@ class TopicController extends Controller
         $this->model = new Topic;
     }
 
-    public function getTopic()
+    public function getTopic($id=false)
     {
         $return = [];
-        $model = $this->model->whereStatus('publish')->get();
+        $model = $this->model->whereIn('status',['publish','unpublish']);
+        if ($id) $model = $model->whereId($id);
+
+        $model = $model->get();
+        
         if ($model) {
             $return['status'] = true;
             $return['data'] = $model;

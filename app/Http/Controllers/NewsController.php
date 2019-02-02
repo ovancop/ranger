@@ -17,10 +17,13 @@ class NewsController extends Controller
         $this->model = new News;
     }
 
-    public function getNews()
+    public function getNews($id=false)
     {
         $return = [];
-        $model = $this->model->whereStatus('publish')->with('newsTopic.topic')->get();
+        $model = $this->model->whereStatus('publish')->with('newsTopic.topic');
+        if ($id) $model = $model->whereId($id);
+
+        $model = $model->get();
         if ($model) {
             $return['status'] = true;
             $return['data'] = $model;

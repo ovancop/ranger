@@ -16,12 +16,14 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/news', ['uses' => 'NewsController@getNews']);
+$router->get('/news/{id}', ['uses' => 'NewsController@getNews']);
 $router->post('/news/save', ['uses' => 'NewsController@postCreateNews']);
 $router->post('/news/save/{id}', ['uses' => 'NewsController@postCreateNews']);
 $router->post('/news/delete/{id}', ['uses' => 'NewsController@postDeleteNews']);
 
 
 $router->get('/topic', ['uses' => 'TopicController@getTopic']);
+$router->get('/topic/{id}', ['uses' => 'TopicController@getTopic']);
 $router->post('/topic/save', ['uses' => 'TopicController@postCreateTopic']);
 $router->post('/topic/save/{id}', ['uses' => 'TopicController@postCreateTopic']);
 $router->post('/topic/delete/{id}', ['uses' => 'TopicController@postDeleteTopic']);
